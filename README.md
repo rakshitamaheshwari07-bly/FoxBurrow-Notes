@@ -9,7 +9,7 @@ A secure and beautiful note-taking web application built with Flask.
 * Category-based Organization
 * Search Notes
 * Dark Mode
-* Secure Note Storage
+* Secure Note Storage 
 * Woodland-inspired Custom UI
 * Responsive Layout
 * PWA Support
