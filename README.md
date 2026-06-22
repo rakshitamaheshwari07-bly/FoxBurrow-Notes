@@ -1,20 +1,25 @@
 # 🦊 FoxBurrow Notes
 
-A secure and beautiful note-taking web application built with Flask.
+A secure and aesthetic note-taking application built using Flask, SQLite, HTML, CSS, and JavaScript.
+
+FoxBurrow Notes provides a cozy woodland-inspired experience where users can safely create, organize, search, and manage their personal notes.
+
+---
 
 ## ✨ Features
 
-* User Authentication (Register/Login)
-* Create, Edit and Delete Notes
-* Category-based Organization
-* Search Notes
-* Dark Mode
-* Secure Note Storage 
-* Woodland-inspired Custom UI
-* Responsive Layout
-* PWA Support
+* 🔐 User Authentication (Register/Login)
+* 📝 Create, Edit & Delete Notes
+* 🔎 Search Notes
+* 📂 Category-based Filtering
+* 🌙 Dark Mode Support
+* 🔒 Encrypted Note Storage using Fernet
+* 🦊 Custom Woodland-Themed UI
+* 📱 Responsive Design
 
-## 🛠 Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 * Python
 * Flask
@@ -22,41 +27,65 @@ A secure and beautiful note-taking web application built with Flask.
 * HTML
 * CSS
 * JavaScript
+* Cryptography (Fernet)
 
 ## 🚀 Installation
 
-```bash
+Clone the repository:
+
+bash
 git clone https://github.com/rakshitamaheshwari07-bly/FoxBurrow-Notes.git
 
-cd FoxBurrow-Notes
 
-pip install -r requirements.txt
 
+Run the application:
+
+bash
 python app.py
-```
 
-Open:
 
-```text
+Open in browser:
+
+
 http://127.0.0.1:5000
-```
 
-## 📂 Repository
 
-GitHub Repository:
+---
 
-https://github.com/rakshitamaheshwari07-bly/FoxBurrow-Notes
+## 📂 Project Structure
+
+
+FoxBurrow-Notes/
+│
+├── static/
+│   ├── css/
+│   ├── images/
+│
+├── templates/
+│
+├── app.py
+├── database.db
+├── requirements.txt
+└── README.md
+
+
+---
+
+## 🌟 Future Improvements
+
+* Cloud Deployment
+* Mobile App Version
+* Rich Text Notes
+* AI-powered Note Suggestions
+* Note Sharing System
+
+---
 
 ## 👩‍💻 Author
 
 Rakshita Maheshwari
 
-BTech CSE Student
+BTech Computer Science Student
 
-## 🌟 Future Improvements
+Built with ❤️ and lots of fox energy 🦊
 
-* Cloud Deployment
-* Note Sharing
-* Rich Text Editor
-* Mobile App Version
-* AI Note Assistant
