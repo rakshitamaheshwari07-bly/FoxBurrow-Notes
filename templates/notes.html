@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>FoxBurrow Notes 🦊</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="manifest"
+    href="{{ url_for('static', filename='manifest.json') }}">
+
+    <meta name="theme-color"
+    content="#D97E5E">
+
+    <link rel="apple-touch-icon"
+    href="{{ url_for('static', filename='images/icon-192.png') }}">
+</head>
+<body class="notes-body">
+
+<svg class="forest-bg" viewBox="0 0 700 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+
+    <g>
+        <rect x="20" y="100" width="10" height="80" fill="#8B6043" rx="3"/>
+        <ellipse cx="25" cy="80" rx="38" ry="45" fill="#6FA15A"/>
+    </g>
+    <g>
+        <rect x="660" y="80" width="11" height="90" fill="#7A5538" rx="3"/>
+        <ellipse cx="665" cy="60" rx="42" ry="48" fill="#679852"/>
+    </g>
+    <g opacity="0.85" fill="#A8C98F">
+        <ellipse cx="0" cy="560" rx="80" ry="40"/>
+        <ellipse cx="200" cy="570" rx="90" ry="35"/>
+        <ellipse cx="500" cy="565" rx="90" ry="35"/>
+        <ellipse cx="700" cy="555" rx="80" ry="40"/>
+    </g>
+    <g opacity="0.4" fill="#7A8B69">
+        <ellipse cx="100" cy="40" rx="13" ry="6.5" transform="rotate(30 100 40)"/>
+        <ellipse cx="600" cy="40" rx="13" ry="6.5" transform="rotate(-30 600 40)"/>
+    </g>
+</svg>
+
+<div class="hero">
+
+    <img
+    src="{{ url_for('static', filename='images/fox-sitting.png') }}"
+    style="width:80px;height:80px;"
+    class="fox"/>
+
+    <div>
+        <h1>FoxBurrow Notes 🦊</h1>
+        <p>A safe burrow for your thoughts.</p>
+    </div>
+
+</div>
+
+<br>
+
+<div class="main-layout">
+<div class="sidebar">
+
+    <button onclick="toggleDarkMode()">
+        🌙 Toggle Dark Mode
+    </button>
+
+    <br><br>
+
+    <a href="/notes">🍂 All Notes</a>
+
+    <a href="/create-note">
+        ➕ Create Note
+    </a>
+
+    <a href="/profile">
+        👤 Profile
+    </a>
+
+    <a href="/logout">
+        🚪 Logout
+    </a>
+
+    <hr>
+
+    <h3>Categories</h3>
+
+    <a href="/notes?category=Study">
+        📚 Study
+    </a>
+
+    <a href="/notes?category=Work">
+        💼 Work
+    </a>
+
+    <a href="/notes?category=Personal">
+        🏠 Personal
+    </a>
+
+    <a href="/notes?category=Ideas">
+        💡 Ideas
+    </a>
+
+</div>
+
+<div class="content">
+
+    <h1>My Notes 📝</h1>
+
+    <p>
+        <b>Total Notes:</b> {{ note_count }}
+    </p>
+
+    <form method="GET">
+
+        <input
+        class="search-box"
+        type="text"
+        name="search"
+        placeholder="🌰 Search Notes">
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if notes %}
+
+        {% for note in notes %}
+
+        <div class="note-card">
+
+            <h3>{{ note[1] }}</h3>
+
+            <span class="category-tag">
+                {{ note[5] }}
+            </span>
+
+            <div class="note-content">
+                {{ note[2] | safe }}
+            </div>
+
+            <p class="date">
+                🍂 {{ note[4] }}
+            </p>
+
+            <a href="/edit-note/{{ note[0] }}">
+                ✏️ Edit
+            </a>
+
+            <a
+            href="#"
+            onclick="showDeleteModal('{{ note[0] }}'); return false;">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <h3>No Notes Found 😔</h3>
+
+        <p>Create your first note!</p>
+
+    {% endif %}
+
+</div>
+
+
+</div>
+
+<div id="delete-modal-overlay" class="modal-overlay">
+    <div class="modal-box">
+
+        <img
+        src="{{ url_for('static', filename='images/fox-Confused.png') }}"
+        class="modal-fox"
+        alt="Confused fox"/>
+
+        <h3 class="modal-title">Delete this note?</h3>
+        <p class="modal-subtitle">your fox won't be able to dig it back up</p>
+
+        <div class="modal-actions">
+            <button class="modal-cancel" onclick="hideDeleteModal()">Cancel</button>
+            <button class="modal-delete" onclick="confirmDelete()">Delete</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark");
+    }
+    else{
+        localStorage.setItem("theme","light");
+    }
+}
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark");
+}
+
+let noteIdToDelete = null;
+
+function showDeleteModal(noteId){
+    noteIdToDelete = noteId;
+    document.getElementById("delete-modal-overlay").classList.add("active");
+}
+
+function hideDeleteModal(){
+    noteIdToDelete = null;
+    document.getElementById("delete-modal-overlay").classList.remove("active");
+}
+
+function confirmDelete(){
+    if(noteIdToDelete){
+        window.location.href = "/delete-note/" + noteIdToDelete;
+    }
+}
+
+</script>
+
+</body>
+</html>

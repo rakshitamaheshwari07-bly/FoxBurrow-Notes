@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Edit Note</title>
+    <script src="https://cdn.ckeditor.com/4.25.1-lts/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="notes-body">
+
+<svg class="forest-bg" viewBox="0 0 700 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <rect x="20" y="100" width="10" height="80" fill="#8B6043" rx="3"/>
+        <ellipse cx="25" cy="80" rx="38" ry="45" fill="#6FA15A"/>
+    </g>
+    <g>
+        <rect x="660" y="80" width="11" height="90" fill="#7A5538" rx="3"/>
+        <ellipse cx="665" cy="60" rx="42" ry="48" fill="#679852"/>
+    </g>
+    <g opacity="0.85" fill="#A8C98F">
+        <ellipse cx="0" cy="560" rx="80" ry="40"/>
+        <ellipse cx="200" cy="570" rx="90" ry="35"/>
+        <ellipse cx="500" cy="565" rx="90" ry="35"/>
+        <ellipse cx="700" cy="555" rx="80" ry="40"/>
+    </g>
+</svg>
+
+<div class="hero create-hero">
+
+    <img
+    src="{{ url_for('static', filename='images/fox-Reading.png') }}"
+    class="fox-reading"
+    alt="Reading Fox"/>
+
+    <div>
+        <h1>Edit Note ✏️</h1>
+        <p>Polish up your thought before tucking it back in.</p>
+    </div>
+
+</div>
+
+<br>
+
+<div class="create-layout">
+
+    <div class="create-card">
+
+        <form method="POST">
+
+            <label class="create-label">Title</label>
+            <input
+                type="text"
+                name="title"
+                value="{{ note[1] }}"
+                required>
+
+            <br><br>
+
+            <label class="create-label">Content</label>
+            <textarea
+                name="content"
+                id="content"
+                rows="10"
+                cols="50"
+                required>{{ note[2] | safe }}</textarea>
+
+            <script>
+            CKEDITOR.replace('content');
+            </script>
+
+            <br><br>
+
+            <button type="submit">
+                Update Note
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="create-side">
+        <img
+        src="{{ url_for('static', filename='images/Pinecone.png') }}"
+        class="pinecone-buddy"
+        alt="Pinecone buddy"/>
+        <p class="create-tip">tip: your edits save the moment you hit update 🍂</p>
+    </div>
+
+</div>
+
+<script>
+
+function toggleDarkMode(){
+    document.body.classList.toggle("dark");
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark");
+    } else {
+        localStorage.setItem("theme","light");
+    }
+}
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark");
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{
+    "name": "FoxBurrow Notes",
+    "short_name": "FoxNotes",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FDF6EC",
+    "theme_color": "#D97E5E",
+    "icons": [
+        {
+            "src": "/static/images/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
