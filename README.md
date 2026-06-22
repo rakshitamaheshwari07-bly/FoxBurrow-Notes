@@ -23,10 +23,6 @@ A secure and beautiful note-taking web application built with Flask.
 * CSS
 * JavaScript
 
-## 📸 Screenshots
-
-*Add screenshots here after uploading them to the repository.*
-
 ## 🚀 Installation
 
 ```bash
