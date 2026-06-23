@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 from datetime import datetime
 from cryptography.fernet import Fernet
+import os
 
 key = b'S4Ige8CDGzANHBfSe_BAtZmwS22dl6aiFhw1UmCjCIo='
 cipher = Fernet(key)
@@ -390,5 +391,6 @@ def logout():
     return redirect("/login")
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
     
